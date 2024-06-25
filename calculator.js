@@ -30,3 +30,17 @@ function operate(first_num, last_num, operator) {
         divide(first_num, last_num);
     }
 }
+
+const display = document.querySelector(".display");
+display.textContent = "";
+
+const nums = document.querySelector(".nums");
+nums.addEventListener("click", function (e) {
+    target = e.target;
+    num = target.textContent;
+    if (!display.textContent) {
+        display.textContent = num;
+    } else {
+        display.textContent += num;
+    }
+});
