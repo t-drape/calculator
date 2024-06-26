@@ -95,4 +95,3 @@ clear.addEventListener("click", () => {
     reset_values();
     display.textContent = "";
 });
-
