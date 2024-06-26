@@ -1,15 +1,45 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+
+.calc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+}
+
+.nums {
+    height: 300px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    flex-wrap: wrap;
+}
+
+.nums > button {
+    width: 100px;
+    height: 100px;
+}
+
+
+
+
 .display {
-    margin-top: 5px;
     width: 400px;
-    height: 200px;
+    height: 100px;
     background-color: grey;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     font-size: 100px;
-    margin-bottom: 10px;
-}
-
-.nums {
-    margin: 10px;
 }
