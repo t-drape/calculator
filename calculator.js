@@ -12,7 +12,8 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b === 0) {
-        return "Really? NaN"
+        reset_values();
+        return "Really?"
     }
     return a/b;
 }
@@ -20,14 +21,14 @@ function divide(a, b) {
 let first_num, last_num, operator;
 
 function operate(first_num, last_num, operator) {
-    if (operator === "add") {
-        add(first_num, last_num);
-    } else if (operator === "sub") {
-        subtract(first_num, last_num);
-    } else if (operator === "mult") {
-        multiply(first_num, last_num);
-    } else if (operator === "divide") {
-        divide(first_num, last_num);
+    if (operator === "+") {
+        display.textContent = add(first_num, last_num);
+    } else if (operator === "-") {
+        display.textContent = subtract(first_num, last_num);
+    } else if (operator === "*") {
+        display.textContent = multiply(first_num, last_num);
+    } else if (operator === "/") {
+        display.textContent = divide(first_num, last_num);
     }
 }
 
@@ -35,12 +36,58 @@ const display = document.querySelector(".display");
 display.textContent = "";
 
 const nums = document.querySelector(".nums");
-nums.addEventListener("click", function (e) {
-    target = e.target;
-    num = target.textContent;
-    if (!display.textContent) {
-        display.textContent = num;
-    } else {
-        display.textContent += num;
-    }
+
+const num_btns = nums.querySelectorAll("button");
+
+num_btns.forEach((button) => {
+    button.addEventListener("click", () => {
+        if (display.textContent === "Really?") {
+            display.textContent = "";
+        }
+        num = button.textContent;
+        if (!display.textContent) {
+            display.textContent = num;
+        } else {
+            display.textContent += num;
+        }
+    });
 });
+
+const op_con = document.querySelector(".operators");
+op_con.addEventListener("click", function (e) {
+    target = e.target;
+    if (target.textContent === "Add") {
+        operator = "+";
+    } else if (target.textContent === "Subtract") {
+        operator = "-";
+    } else if (target.textContent === "Multiply") {
+        operator = "*";
+    } else if (target.textContent === "Divide") {
+        operator = "/";
+    }
+    first_num = +(display.textContent);
+    display.textContent = "";
+});
+
+
+function reset_values() {
+    first_num = 0;
+    last_num = 0;
+    operator = "";
+}
+
+const eq = document.querySelector(".eq");
+
+eq.addEventListener("click", () => {
+    last_num = +(display.textContent);
+    operate(first_num, last_num, operator);
+    reset_values();
+});
+
+const clear = document.querySelector(".clear");
+
+clear.addEventListener("click", () => {
+    reset_values();
+    display.textContent = "";
+});
+
