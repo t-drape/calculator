@@ -33,7 +33,6 @@ function operate(first_num, last_num, operator) {
 }
 
 const display = document.querySelector(".display");
-display.textContent = "";
 
 const nums = document.querySelector(".nums");
 
@@ -48,7 +47,11 @@ num_btns.forEach((button) => {
         if (!display.textContent) {
             display.textContent = num;
         } else {
-            display.textContent += num;
+            if (display.textContent === "0") {
+                display.textContent = num;
+            } else {
+                display.textContent += num;
+            }
         }
     });
 });
@@ -79,9 +82,12 @@ function reset_values() {
 const eq = document.querySelector(".eq");
 
 eq.addEventListener("click", () => {
-    last_num = +(display.textContent);
-    operate(first_num, last_num, operator);
-    reset_values();
+    if (operator) {
+        last_num = +(display.textContent);
+        operate(first_num, last_num, operator);
+        console.log(first_num, last_num, operator);
+        reset_values();
+    }
 });
 
 const clear = document.querySelector(".clear");
