@@ -85,7 +85,6 @@ eq.addEventListener("click", () => {
     if (operator) {
         last_num = +(display.textContent);
         operate(first_num, last_num, operator);
-        console.log(first_num, last_num, operator);
         reset_values();
     }
 });
