@@ -16,6 +16,7 @@ function divide(a, b) {
         return "Really?"
     }
     return (a/b).toFixed(2);
+
 }
 
 function reset_values() {
@@ -29,13 +30,44 @@ let first_num, last_num, operator;
 
 function operate(first_num, last_num, operator) {
     if (operator === "+") {
-        display.textContent = add(first_num, last_num);
+        tc = add(first_num, last_num);
+        if (tc.toString().length > 7) {
+            alert("ERROR: Please keep values under 8 characters");
+            reset_values();
+            display.textContent = "";
+        } else {
+            display.textContent = tc;
+        }
+
     } else if (operator === "-") {
-        display.textContent = subtract(first_num, last_num);
+        tc = subtract(first_num, last_num);
+        if (tc.toString().length > 7) {
+            alert("ERROR: Please keep values under 8 characters");
+            reset_values();
+            display.textContent = "";
+        } else {
+            display.textContent = tc;
+        }
+    
     } else if (operator === "*") {
-        display.textContent = multiply(first_num, last_num);
+        tc = multiply(first_num, last_num);
+        if (tc.toString().length > 7) {
+            alert("ERROR: Please keep values under 8 characters");
+            reset_values();
+            display.textContent = "";
+        } else {
+            display.textContent = tc;
+        }
+
     } else if (operator === "/") {
-        display.textContent = divide(first_num, last_num);
+        tc = divide(first_num, last_num);
+        if (tc.toString().length > 7) {
+            alert("ERROR: Please keep values under 8 characters");
+            reset_values();
+            display.textContent = "";
+        } else {
+            display.textContent = tc;
+        }
     }
 }
 
@@ -58,8 +90,14 @@ nums.forEach((num_row) => {
                 if (display.textContent === "0") {
                     display.textContent = num;
                 } else {
-                    display.textContent += num;
-                }
+                        if (display.textContent.length > 7) {
+                            alert("ERROR: Please keep values under 8 characters");
+                            reset_values();
+                            display.textContent = "";
+                        } else {
+                            display.textContent += num;
+                        }
+                    }
             }
         });
     });
@@ -90,9 +128,14 @@ const eq = document.querySelector(".eq");
 eq.addEventListener("click", () => {
     if (operator) {
         last_num = +(display.textContent);
-        console.log(first_num, last_num, operator);
-        operate(first_num, last_num, operator);
-        reset_values();
+        if (typeof first_num != "number" || typeof last_num != "number") {
+            alert("ERROR: Please enter suitable number values")
+            reset_values();
+            display.textContent = "";
+        } else {
+            operate(first_num, last_num, operator);
+            reset_values();
+        }           
     }
 });
 
