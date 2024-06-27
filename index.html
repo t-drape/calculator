@@ -6,37 +6,49 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Calculator</title>
         <link rel="stylesheet" href="styles.css">
-        <script defer src="calculator.js"></script>
+        <!-- <script defer src="calculator.js"></script> -->
     </head>
     <body>
         <div class="calc">
-            <div class="display"></div>
-            <div class="container">
-                <div class="nums">
-                    <button class="b7">7</button>
-                    <button class="b8">8</button>
-                    <button class="b9">9</button>
-                    <button class="b4">4</button>
-                    <button class="b5">5</button>
-                    <button class="b6">6</button>
-                    <button class="b1">1</button>
-                    <button class="b2">2</button>
-                    <button class="b3">3</button>
-                    <button class="b0">0</button>
-                </div>
-    
-                <div class="operators">
-                    <button class="add">Add</button>
-                    <button class="sub">Subtract</button>
-                    <button class="mult">Multiply</button>
-                    <button class="divide">Divide</button>
-                </div>
-            </div>
-            <div class="ops">
-                <button class="eq">Equals</button>
-                <button class="clear">Clear</button>
-            </div>
+     <!-- rows:
+        Clear, %, X, Add
+        7, 8, 9, Subtract
+        4, 5, 6, Multiply
+        1, 2, 3, Equals
 
+    -->
+            <div class="display"></div>
+            <div class="row">
+                <button>Clear</button>
+                <button>%</button>
+                <button>X</button>
+                <button>Add</button>
+            </div>
+            <div class="row">
+                <div class="nums">
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>
+                </div>
+                <button>Subtract</button>
+            </div>
+            <div class="row">
+                <div class="nums">
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                </div>
+                <button>Multiply</button>
+
+            </div>
+            <div class="row">
+                <div class="nums">
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                </div>
+                <button>Equals</button>
+            </div>
         </div>
     </body>
 </html>
