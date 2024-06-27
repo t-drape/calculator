@@ -15,96 +15,90 @@ function divide(a, b) {
         reset_values();
         return "Really?"
     }
-    return a/b;
+    return (a/b).toFixed(2);
+}
+
+function reset_values() {
+    first_num = 0;
+    last_num = 0;
+    operator = "";
 }
 
 let first_num, last_num, operator;
 
 
-// function operate(first_num, last_num, operator) {
-//     if (operator === "+") {
-//         display.textContent = add(first_num, last_num);
-//     } else if (operator === "–") {
-//         display.textContent = subtract(first_num, last_num);
-//     } else if (operator === "x") {
-//         display.textContent = multiply(first_num, last_num);
-//     } else if (operator === "/") {
-//         display.textContent
-//     }
-// }
+function operate(first_num, last_num, operator) {
+    if (operator === "+") {
+        display.textContent = add(first_num, last_num);
+    } else if (operator === "-") {
+        display.textContent = subtract(first_num, last_num);
+    } else if (operator === "*") {
+        display.textContent = multiply(first_num, last_num);
+    } else if (operator === "/") {
+        display.textContent = divide(first_num, last_num);
+    }
+}
 
-// function operate(first_num, last_num, operator) {
-//     if (operator === "+") {
-//         display.textContent = add(first_num, last_num);
-//     } else if (operator === "-") {
-//         display.textContent = subtract(first_num, last_num);
-//     } else if (operator === "*") {
-//         display.textContent = multiply(first_num, last_num);
-//     } else if (operator === "/") {
-//         display.textContent = divide(first_num, last_num);
-//     }
-// }
+const display = document.querySelector(".display");
 
-// const display = document.querySelector(".display");
+const nums = document.querySelectorAll(".nums");
 
-// const nums = document.querySelector(".nums");
+nums.forEach((num_row) => {
+    const num_btns = num_row.querySelectorAll("button");
 
-// const num_btns = nums.querySelectorAll("button");
-
-// num_btns.forEach((button) => {
-//     button.addEventListener("click", () => {
-//         if (display.textContent === "Really?") {
-//             display.textContent = "";
-//         }
-//         num = button.textContent;
-//         if (!display.textContent) {
-//             display.textContent = num;
-//         } else {
-//             if (display.textContent === "0") {
-//                 display.textContent = num;
-//             } else {
-//                 display.textContent += num;
-//             }
-//         }
-//     });
-// });
-
-// const op_con = document.querySelector(".operators");
-// op_con.addEventListener("click", function (e) {
-//     target = e.target;
-//     if (target.textContent === "Add") {
-//         operator = "+";
-//     } else if (target.textContent === "Subtract") {
-//         operator = "-";
-//     } else if (target.textContent === "Multiply") {
-//         operator = "*";
-//     } else if (target.textContent === "Divide") {
-//         operator = "/";
-//     }
-//     first_num = +(display.textContent);
-//     display.textContent = "";
-// });
+    num_btns.forEach((button) => {
+        button.addEventListener("click", () => {
+            if (display.textContent === "Really?") {
+                display.textContent = "";
+            }
+            num = button.textContent;
+            if (!display.textContent) {
+                display.textContent = num;
+            } else {
+                if (display.textContent === "0") {
+                    display.textContent = num;
+                } else {
+                    display.textContent += num;
+                }
+            }
+        });
+    });
+});
 
 
-// function reset_values() {
-//     first_num = 0;
-//     last_num = 0;
-//     operator = "";
-// }
+const operators = document.querySelectorAll(".operator");
 
-// const eq = document.querySelector(".eq");
+operators.forEach((op) => {
+    op.addEventListener("click", function (e) {
+        target = e.target;
+        if (target.textContent === "+") {
+            operator = "+";
+        } else if (target.textContent === "–") {
+            operator = "-";
+        } else if (target.textContent === "x") {
+            operator = "*";
+        } else if (target.textContent === "/") {
+            operator = "/";
+        }
+        first_num = +(display.textContent);
+        display.textContent = "";
+    });
+});
 
-// eq.addEventListener("click", () => {
-//     if (operator) {
-//         last_num = +(display.textContent);
-//         operate(first_num, last_num, operator);
-//         reset_values();
-//     }
-// });
+const eq = document.querySelector(".eq");
 
-// const clear = document.querySelector(".clear");
+eq.addEventListener("click", () => {
+    if (operator) {
+        last_num = +(display.textContent);
+        console.log(first_num, last_num, operator);
+        operate(first_num, last_num, operator);
+        reset_values();
+    }
+});
 
-// clear.addEventListener("click", () => {
-//     reset_values();
-//     display.textContent = "";
-// });
+const clear = document.querySelector(".clear");
+
+clear.addEventListener("click", () => {
+    reset_values();
+    display.textContent = "";
+});
