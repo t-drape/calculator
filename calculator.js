@@ -31,8 +31,8 @@ let first_num, last_num, operator;
 function operate(first_num, last_num, operator) {
     if (operator === "+") {
         tc = add(first_num, last_num);
-        if (tc.toString().length > 7) {
-            alert("ERROR: Please keep values under 8 characters");
+        if (tc.toString().length > 8) {
+            alert("ERROR: Please keep values under 9 characters");
             reset_values();
             display.textContent = "";
         } else {
@@ -41,8 +41,8 @@ function operate(first_num, last_num, operator) {
 
     } else if (operator === "-") {
         tc = subtract(first_num, last_num);
-        if (tc.toString().length > 7) {
-            alert("ERROR: Please keep values under 8 characters");
+        if (tc.toString().length > 8) {
+            alert("ERROR: Please keep values under 9 characters");
             reset_values();
             display.textContent = "";
         } else {
@@ -51,8 +51,8 @@ function operate(first_num, last_num, operator) {
     
     } else if (operator === "*") {
         tc = multiply(first_num, last_num);
-        if (tc.toString().length > 7) {
-            alert("ERROR: Please keep values under 8 characters");
+        if (tc.toString().length > 8) {
+            alert("ERROR: Please keep values under 9 characters");
             reset_values();
             display.textContent = "";
         } else {
@@ -62,7 +62,7 @@ function operate(first_num, last_num, operator) {
     } else if (operator === "/") {
         tc = divide(first_num, last_num);
         if (tc.toString().length > 7) {
-            alert("ERROR: Please keep values under 8 characters");
+            alert("ERROR: Please keep values under 9 characters");
             reset_values();
             display.textContent = "";
         } else {
@@ -90,8 +90,8 @@ nums.forEach((num_row) => {
                 if (display.textContent === "0") {
                     display.textContent = num;
                 } else {
-                        if (display.textContent.length > 7) {
-                            alert("ERROR: Please keep values under 8 characters");
+                        if (display.textContent.length > 8) {
+                            alert("ERROR: Please keep values under 9 characters");
                             reset_values();
                             display.textContent = "";
                         } else {
