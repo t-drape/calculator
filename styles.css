@@ -18,7 +18,7 @@ body {
 }
 
 .row {
-    width: 300px;
+    width: 400px;
     display: flex;
 }
 
@@ -38,7 +38,7 @@ button {
 }
 
 .display {
-    width: 300px;
+    width: 400px;
     height: 125px;
     background-color: grey;
     display: flex;

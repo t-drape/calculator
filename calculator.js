@@ -18,14 +18,6 @@ function divide(a, b) {
     return a/b;
 }
 
-function exponent(a, b) {
-    return a**b;
-}
-
-function sqrt(a, b) {
-    return a ** (1/b);
-}
-
 let first_num, last_num, operator;
 
 
