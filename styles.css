@@ -18,6 +18,7 @@ body {
 }
 
 .row {
+    width: 300px;
     display: flex;
 }
 
@@ -28,10 +29,16 @@ body {
 button {
     width: 100px;
     height: 100px;
+    font-size: 24px;
+}
+
+.zero {
+    display: flex;
+    justify-content: flex-start;
 }
 
 .display {
-    width: 400px;
+    width: 300px;
     height: 125px;
     background-color: grey;
     display: flex;
