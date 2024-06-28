@@ -32,9 +32,8 @@ function operate(first_num, last_num, operator) {
     if (operator === "+") {
         tc = add(first_num, last_num);
         if (tc.toString().length > 8) {
-            alert("ERROR: Please keep values under 9 characters");
+            display.textContent = "Err: Val";
             reset_values();
-            display.textContent = "";
         } else {
             display.textContent = tc;
         }
@@ -42,9 +41,8 @@ function operate(first_num, last_num, operator) {
     } else if (operator === "-") {
         tc = subtract(first_num, last_num);
         if (tc.toString().length > 8) {
-            alert("ERROR: Please keep values under 9 characters");
+            display.textContent = "Err: Val";
             reset_values();
-            display.textContent = "";
         } else {
             display.textContent = tc;
         }
@@ -52,21 +50,23 @@ function operate(first_num, last_num, operator) {
     } else if (operator === "*") {
         tc = multiply(first_num, last_num);
         if (tc.toString().length > 8) {
-            alert("ERROR: Please keep values under 9 characters");
+            display.textContent = "Err: Val";
             reset_values();
-            display.textContent = "";
         } else {
             display.textContent = tc;
         }
 
     } else if (operator === "/") {
         tc = divide(first_num, last_num);
-        if (tc.toString().length > 7) {
-            alert("ERROR: Please keep values under 9 characters");
+        str = tc.toString();
+        if (str.includes(".00")) {
+            str = str.slice(0, -3);
+        }
+        if (str.length > 8) {
+            display.textContent = "Err: Val";
             reset_values();
-            display.textContent = "";
         } else {
-            display.textContent = tc;
+            display.textContent = +str;
         }
     }
 }
@@ -77,27 +77,22 @@ const nums = document.querySelectorAll(".nums");
 
 nums.forEach((num_row) => {
     const num_btns = num_row.querySelectorAll("button");
-
     num_btns.forEach((button) => {
         button.addEventListener("click", () => {
-            if (display.textContent === "Really?") {
+            if (display.textContent === "Really?" || display.textContent === "Err: Val") {
                 display.textContent = "";
             }
-            num = button.textContent;
-            if (!display.textContent) {
-                display.textContent = num;
-            } else {
-                if (display.textContent === "0") {
+            if (display.textContent.length != 8) {
+                num = button.textContent;
+                if (!display.textContent) {
                     display.textContent = num;
                 } else {
-                        if (display.textContent.length > 8) {
-                            alert("ERROR: Please keep values under 9 characters");
-                            reset_values();
-                            display.textContent = "";
-                        } else {
-                            display.textContent += num;
-                        }
-                    }
+                    if (display.textContent === "0") {
+                        display.textContent = num;
+                    } else {
+                                display.textContent += num;
+                            }
+                }
             }
         });
     });
