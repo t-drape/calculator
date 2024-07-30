@@ -25,7 +25,7 @@ function reset_values() {
     operator = "";
 }
 
-let first_num, last_num, operator;
+let first_num, last_num, operator, prev_val;
 
 
 function operate(first_num, last_num, operator) {
@@ -35,7 +35,11 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
+            if (prev_val) {
+                previous_value.textContent = "Prev: " + prev_val;
+            }
             display.textContent = tc;
+            prev_val = tc;
         }
 
     } else if (operator === "-") {
@@ -44,7 +48,11 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
+            if (prev_val) {
+                previous_value.textContent = "Prev: " + prev_val;
+            }
             display.textContent = tc;
+            prev_val = tc;
         }
     
     } else if (operator === "*") {
@@ -53,7 +61,11 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
+            if (prev_val) {
+                previous_value.textContent = "Prev: " + prev_val;
+            }
             display.textContent = tc;
+            prev_val = tc;
         }
 
     } else if (operator === "/") {
@@ -66,12 +78,18 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
+            if (prev_val) {
+                previous_value.textContent = "Prev: " + prev_val;
+            }
             display.textContent = +str;
+            prev_val = +str;
         }
     }
 }
 
-const display = document.querySelector(".display");
+const display = document.querySelector(".display_nums");
+
+const previous_value = document.querySelector(".prev")
 
 const nums = document.querySelectorAll(".nums");
 
@@ -79,7 +97,7 @@ nums.forEach((num_row) => {
     const num_btns = num_row.querySelectorAll("button");
     num_btns.forEach((button) => {
         button.addEventListener("click", () => {
-            if (display.textContent === "Really?" || display.textContent === "Err: Val") {
+            if (display.textContent === "Really?" || display.textContent === "Err: Val" || prev_val) {
                 display.textContent = "";
             }
             if (display.textContent.length != 8) {

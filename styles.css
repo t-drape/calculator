@@ -45,8 +45,15 @@ button {
     border: 5px dotted rgba(255, 255, 255, 0.5);
     background-color: black;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: flex-end;
     font-size: 100px;
     color: honeydew;
+}
+
+.prev {
+    margin: 10px;
+    align-self: start;
+    font-size: 20px;
+    color: grey;
 }
