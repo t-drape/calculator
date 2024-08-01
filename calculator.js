@@ -19,15 +19,22 @@ function divide(a, b) {
 }
 
 function sqrt(a) {
-    return (a ** 0.5).toFixed(2);
+    return (a ** 0.5).toFixed(2).toString();
 }
 
 function square(a) {
-    return a ** 2;
+    return (a ** 2).toString();
 }
 
 function exponent(a, b) {
     return a ** b;
+}
+
+function remove_zeros(str) {
+    if (str.includes(".00")) {
+        str = str.slice(0, -3);
+    }
+    return str;
 }
 
 function reset_values() {
@@ -36,68 +43,49 @@ function reset_values() {
     operator = "";
 }
 
+function update_previous() {
+    if (pv) {
+        previous_value.textContent = "Prev: " + pv;
+        prev_val = pv;
+    }
+}
+
+function update_current(tc) {
+    display.textContent = tc;
+    cur_val = tc;
+}
+
+function error_check_procedure() {
+    display.textContent = "Err: Val";
+    reset_values();
+}
+
 let first_num, last_num, operator, prev_val, cur_val, pv;
 
 
 function operate(first_num, last_num, operator) {
     if (operator === "+") {
         tc = add(first_num, last_num);
-        if (tc.toString().length > 7) {
-            display.textContent = "Err: Val";
-            reset_values();
-        } else {
-            display.textContent = tc;
-            cur_val = tc;
-        }
+        tc.toString().length > 7 ? error_procedure() : update_current(tc);
 
     } else if (operator === "-") {
         tc = subtract(first_num, last_num);
-        if (tc.toString().length > 7) {
-            display.textContent = "Err: Val";
-            reset_values();
-        } else {
-            display.textContent = tc;
-            cur_val = tc;
-        }
+        tc.toString().length > 7 ? error_procedure() : update_current(tc);
     
     } else if (operator === "*") {
         tc = multiply(first_num, last_num);
-        if (tc.toString().length > 7) {
-            display.textContent = "Err: Val";
-            reset_values();
-        } else {
-            display.textContent = tc;
-            cur_val = tc;
-        }
+        tc.toString().length > 7 ? error_procedure() : update_current(tc);
 
     } else if (operator === "/") {
-        tc = divide(first_num, last_num);
-        str = tc.toString();
-        if (str.includes(".00")) {
-            str = str.slice(0, -3);
-        }
-        if (str.length > 7) {
-            display.textContent = "Err: Val";
-            reset_values();
-        } else {
-            display.textContent = +str;
-            cur_val = +str;
-        }
+        div = divide(first_num, last_num);
+        str = div.toString();
+        str = remove_zeros(str);
+        str.length > 7 ? error_procedure() : update_current(tc);
     } else if (operator === "a**b") {
         tc = exponent(first_num, last_num);
-        if (tc.toString().length > 7) {
-            display.textContent = "Err: Val";
-            reset_values();
-        } else {
-            display.textContent = tc;
-            cur_val = tc;
-        }
+        tc.toString().length > 7 ? error_procedure() : update_current(tc);
     }
-    if (pv) {
-        previous_value.textContent = "Prev: " + pv;
-        prev_val = pv;
-    }
-
+    update_previous();
 }
 
 const display = document.querySelector(".display_nums");
@@ -143,29 +131,17 @@ operators.forEach((op) => {
         first_num = +(display.textContent);
         if (target.textContent === "x²" || target.textContent === "√") {
             if (target.textContent === "x²") {
-                str = square(first_num).toString();
-                if (str.includes(".00")) {
-                    str = str.slice(0, -3);
-                }
-                if (pv) {
-                    previous_value.textContent = "Prev: " + pv;
-                    prev_val = pv;
-                }
-                display.textContent = +str;
-                pv = +(display.textContent);
-                cur_val = +str;
+                str = square(first_num);
+                str = remove_zeros(str);
+                update_previous();
+                pv = +str;
+                update_current(+str);
             } else if (target.textContent === "√") {
-                str = sqrt(first_num).toString();
-                if (str.includes(".00")) {
-                    str = str.slice(0, -3);
-                }
-                if (pv) {
-                    previous_value.textContent = "Prev: " + pv;
-                    prev_val = pv;
-                }
-                display.textContent = +str;
-                pv = +(display.textContent);
-                cur_val = +str;
+                str = sqrt(first_num);
+                str = remove_zeros(str);
+                update_previous();
+                pv = +str;
+                update_current(+str);
                 
             }
 
