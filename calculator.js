@@ -16,7 +16,18 @@ function divide(a, b) {
         return "Really?"
     }
     return (a/b).toFixed(2);
+}
 
+function sqrt(a) {
+    return (a ** 0.5).toFixed(2);
+}
+
+function square(a) {
+    return a ** 2;
+}
+
+function exponent(a, b) {
+    return a ** b;
 }
 
 function reset_values() {
@@ -72,6 +83,15 @@ function operate(first_num, last_num, operator) {
             display.textContent = +str;
             cur_val = +str;
         }
+    } else if (operator === "a**b") {
+        tc = exponent(first_num, last_num);
+        if (tc.toString().length > 7) {
+            display.textContent = "Err: Val";
+            reset_values();
+        } else {
+            display.textContent = tc;
+            cur_val = tc;
+        }
     }
     if (pv) {
         previous_value.textContent = "Prev: " + pv;
@@ -120,24 +140,50 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((op) => {
     op.addEventListener("click", function (e) {
         target = e.target;
-        if (target.textContent === "+") {
-            operator = "+";
-        } else if (target.textContent === "–") {
-            operator = "-";
-        } else if (target.textContent === "x") {
-            operator = "*";
-        } else if (target.textContent === "/") {
-            operator = "/";
-        } else if (target.textContent === "x^") {
-            operator = "a**b"
-        } else if (target.textContent === "x²") {
-            operator = "**"
-        } else if (target.textContent === "√") {
-            operator = "√"
-        }
         first_num = +(display.textContent);
-        display.textContent = "";
-        cur_val = "";
+        if (target.textContent === "x²" || target.textContent === "√") {
+            if (target.textContent === "x²") {
+                str = square(first_num).toString();
+                if (str.includes(".00")) {
+                    str = str.slice(0, -3);
+                }
+                if (pv) {
+                    previous_value.textContent = "Prev: " + pv;
+                    prev_val = pv;
+                }
+                display.textContent = +str;
+                pv = +(display.textContent);
+                cur_val = +str;
+            } else if (target.textContent === "√") {
+                str = sqrt(first_num).toString();
+                if (str.includes(".00")) {
+                    str = str.slice(0, -3);
+                }
+                if (pv) {
+                    previous_value.textContent = "Prev: " + pv;
+                    prev_val = pv;
+                }
+                display.textContent = +str;
+                pv = +(display.textContent);
+                cur_val = +str;
+                
+            }
+
+        } else {
+            if (target.textContent === "+") {
+                operator = "+";
+            } else if (target.textContent === "–") {
+                operator = "-";
+            } else if (target.textContent === "x") {
+                operator = "*";
+            } else if (target.textContent === "/") {
+                operator = "/";
+            } else if (target.textContent === "x^") {
+                operator = "a**b"
+            }
+            display.textContent = "";
+            cur_val = "";
+        }
     });
 });
 
@@ -164,5 +210,6 @@ clear.addEventListener("click", () => {
     reset_values();
     display.textContent = "";
     prev_val = "";
+    pv = "";
     previous_value.textContent = "Prev: Value";
 });
