@@ -53,6 +53,7 @@ function operate(first_num, last_num, operator) {
                 previous_value.textContent = "Prev: " + prev_val;
             }
             display.textContent = tc;
+            cur_val = tc;
             prev_val = tc;
         }
     
@@ -66,6 +67,7 @@ function operate(first_num, last_num, operator) {
                 previous_value.textContent = "Prev: " + prev_val;
             }
             display.textContent = tc;
+            cur_val = tc;
             prev_val = tc;
         }
 
@@ -83,6 +85,7 @@ function operate(first_num, last_num, operator) {
                 previous_value.textContent = "Prev: " + prev_val;
             }
             display.textContent = +str;
+            cur_val = +str;
             prev_val = +str;
         }
     }
@@ -100,6 +103,7 @@ nums.forEach((num_row) => {
         button.addEventListener("click", () => {
             if (display.textContent === "Really?" || display.textContent === "Err: Val" || cur_val) {
                 display.textContent = "";
+                cur_val = "";
             }
             if (display.textContent.length != 7) {
                 if (button.textContent == "Prev") {
@@ -141,9 +145,6 @@ operators.forEach((op) => {
             operator = "**"
         } else if (target.textContent === "√") {
             operator = "√"
-        }
-        if (display.textContent && prev_val) {
-            prev_val = +(display.textContent);
         }
         first_num = +(display.textContent);
         display.textContent = "";
