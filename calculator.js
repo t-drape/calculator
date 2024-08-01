@@ -167,4 +167,6 @@ const clear = document.querySelector(".clear");
 clear.addEventListener("click", () => {
     reset_values();
     display.textContent = "";
+    prev_val = "";
+    previous_value.textContent = "Prev: Value";
 });
