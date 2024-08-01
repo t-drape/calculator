@@ -31,7 +31,7 @@ let first_num, last_num, operator, prev_val;
 function operate(first_num, last_num, operator) {
     if (operator === "+") {
         tc = add(first_num, last_num);
-        if (tc.toString().length > 8) {
+        if (tc.toString().length > 7) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
@@ -44,7 +44,7 @@ function operate(first_num, last_num, operator) {
 
     } else if (operator === "-") {
         tc = subtract(first_num, last_num);
-        if (tc.toString().length > 8) {
+        if (tc.toString().length > 7) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
@@ -57,7 +57,7 @@ function operate(first_num, last_num, operator) {
     
     } else if (operator === "*") {
         tc = multiply(first_num, last_num);
-        if (tc.toString().length > 8) {
+        if (tc.toString().length > 7) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
@@ -74,7 +74,7 @@ function operate(first_num, last_num, operator) {
         if (str.includes(".00")) {
             str = str.slice(0, -3);
         }
-        if (str.length > 8) {
+        if (str.length > 7) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
@@ -100,8 +100,12 @@ nums.forEach((num_row) => {
             if (display.textContent === "Really?" || display.textContent === "Err: Val" || prev_val) {
                 display.textContent = "";
             }
-            if (display.textContent.length != 8) {
-                num = button.textContent;
+            if (display.textContent.length != 7) {
+                if (button.textContent == "Prev") {
+                    num = prev_val;
+                } else {
+                    num = button.textContent;
+                }
                 if (!display.textContent) {
                     display.textContent = num;
                 } else {
@@ -130,6 +134,12 @@ operators.forEach((op) => {
             operator = "*";
         } else if (target.textContent === "/") {
             operator = "/";
+        } else if (target.textContent === "x^") {
+            operator = "a**b"
+        } else if (target.textContent === "x²") {
+            operator = "**"
+        } else if (target.textContent === "√") {
+            operator = "√"
         }
         first_num = +(display.textContent);
         display.textContent = "";
