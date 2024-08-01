@@ -25,7 +25,7 @@ function reset_values() {
     operator = "";
 }
 
-let first_num, last_num, operator, prev_val, cur_val;
+let first_num, last_num, operator, prev_val, cur_val, pv;
 
 
 function operate(first_num, last_num, operator) {
@@ -35,12 +35,8 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
-            if (prev_val) {
-                previous_value.textContent = "Prev: " + prev_val;
-            }
             display.textContent = tc;
             cur_val = tc;
-            prev_val = tc;
         }
 
     } else if (operator === "-") {
@@ -49,12 +45,8 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
-            if (prev_val) {
-                previous_value.textContent = "Prev: " + prev_val;
-            }
             display.textContent = tc;
             cur_val = tc;
-            prev_val = tc;
         }
     
     } else if (operator === "*") {
@@ -63,12 +55,8 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
-            if (prev_val) {
-                previous_value.textContent = "Prev: " + prev_val;
-            }
             display.textContent = tc;
             cur_val = tc;
-            prev_val = tc;
         }
 
     } else if (operator === "/") {
@@ -81,14 +69,15 @@ function operate(first_num, last_num, operator) {
             display.textContent = "Err: Val";
             reset_values();
         } else {
-            if (prev_val) {
-                previous_value.textContent = "Prev: " + prev_val;
-            }
             display.textContent = +str;
             cur_val = +str;
-            prev_val = +str;
         }
     }
+    if (pv) {
+        previous_value.textContent = "Prev: " + pv;
+        prev_val = pv;
+    }
+
 }
 
 const display = document.querySelector(".display_nums");
@@ -163,6 +152,7 @@ eq.addEventListener("click", () => {
             display.textContent = "";
         } else {
             operate(first_num, last_num, operator);
+            pv = +(display.textContent);
             reset_values();
         }           
     }
