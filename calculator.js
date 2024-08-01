@@ -25,7 +25,7 @@ function reset_values() {
     operator = "";
 }
 
-let first_num, last_num, operator, prev_val;
+let first_num, last_num, operator, prev_val, cur_val;
 
 
 function operate(first_num, last_num, operator) {
@@ -39,6 +39,7 @@ function operate(first_num, last_num, operator) {
                 previous_value.textContent = "Prev: " + prev_val;
             }
             display.textContent = tc;
+            cur_val = tc;
             prev_val = tc;
         }
 
@@ -97,7 +98,7 @@ nums.forEach((num_row) => {
     const num_btns = num_row.querySelectorAll("button");
     num_btns.forEach((button) => {
         button.addEventListener("click", () => {
-            if (display.textContent === "Really?" || display.textContent === "Err: Val" || prev_val) {
+            if (display.textContent === "Really?" || display.textContent === "Err: Val" || cur_val) {
                 display.textContent = "";
             }
             if (display.textContent.length != 7) {
@@ -141,8 +142,12 @@ operators.forEach((op) => {
         } else if (target.textContent === "√") {
             operator = "√"
         }
+        if (display.textContent && prev_val) {
+            prev_val = +(display.textContent);
+        }
         first_num = +(display.textContent);
         display.textContent = "";
+        cur_val = "";
     });
 });
 
