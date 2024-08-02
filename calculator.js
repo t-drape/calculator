@@ -80,7 +80,7 @@ function operate(first_num, last_num, operator) {
         div = divide(first_num, last_num);
         str = div.toString();
         str = remove_zeros(str);
-        str.length > 7 ? error_procedure() : update_current(tc);
+        str.length > 7 ? error_procedure() : update_current(+str);
     } else if (operator === "a**b") {
         tc = exponent(first_num, last_num);
         tc.toString().length > 7 ? error_procedure() : update_current(tc);
