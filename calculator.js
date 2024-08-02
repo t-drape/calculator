@@ -1,7 +1,7 @@
 function add(a, b) {
     x = (a+b);
     if (x.toString().includes(".")) {
-        x = +x.toFixed(2)
+        x = +x.toFixed(2);
     }
     return x;
 }
@@ -9,7 +9,7 @@ function add(a, b) {
 function subtract(a, b) {
     x = (a-b);
     if (x.toString().includes(".")) {
-        x = +x.toFixed(2)
+        x = +x.toFixed(2);
     }
     return x;
 }
@@ -17,7 +17,7 @@ function subtract(a, b) {
 function multiply(a, b) {
     x = (a*b);
     if (x.toString().includes(".")) {
-        x = +x.toFixed(2)
+        x = +x.toFixed(2);
     }
     return x;
 }
