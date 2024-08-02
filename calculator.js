@@ -23,11 +23,11 @@ function sqrt(a) {
 }
 
 function square(a) {
-    return (a ** 2).toString();
+    return (a ** 2).toFixed(2).toString();
 }
 
 function exponent(a, b) {
-    return a ** b;
+    return (a ** b).toFixed(2);
 }
 
 function remove_zeros(str) {
@@ -55,7 +55,7 @@ function update_current(tc) {
     cur_val = tc;
 }
 
-function error_check_procedure() {
+function error_procedure() {
     display.textContent = "Err: Val";
     reset_values();
 }
