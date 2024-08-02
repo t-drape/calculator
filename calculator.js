@@ -13,7 +13,8 @@ function multiply(a, b) {
 function divide(a, b) {
     if (b === 0) {
         reset_values();
-        return "Really?"
+        display.textContent = "Really?";
+        return;
     }
     return (a/b).toFixed(2);
 }
@@ -51,6 +52,7 @@ function update_previous() {
 }
 
 function update_current(tc) {
+    tc = +(remove_zeros(tc.toString()));
     display.textContent = tc;
     cur_val = tc;
 }
@@ -58,6 +60,10 @@ function update_current(tc) {
 function error_procedure() {
     display.textContent = "Err: Val";
     reset_values();
+    prev_val = "";
+    pv = "";
+    cur_val = "";
+    previous_value.textContent = "Prev: Value";
 }
 
 let first_num, last_num, operator, prev_val, cur_val, pv;
@@ -129,19 +135,28 @@ operators.forEach((op) => {
     op.addEventListener("click", function (e) {
         target = e.target;
         first_num = +(display.textContent);
+        if (Number.isNaN(first_num)) {
+            alert("ERROR: Please enter suitable number values")
+            reset_values();
+            display.textContent = "";
+            prev_val = "";
+            pv = "";
+            cur_val = "";
+            previous_value.textContent = "Prev: Value";
+        }
         if (target.textContent === "x²" || target.textContent === "√") {
             if (target.textContent === "x²") {
-                str = square(first_num);
+                str = square(first_num).toString();
                 str = remove_zeros(str);
                 update_previous();
                 pv = +str;
-                update_current(+str);
+                str.length > 7 ? error_procedure() : update_current(+str);
             } else if (target.textContent === "√") {
-                str = sqrt(first_num);
+                str = sqrt(first_num).toString();
                 str = remove_zeros(str);
                 update_previous();
                 pv = +str;
-                update_current(+str);
+                str.length > 7 ? error_procedure() : update_current(+str);
                 
             }
 
@@ -172,6 +187,10 @@ eq.addEventListener("click", () => {
             alert("ERROR: Please enter suitable number values")
             reset_values();
             display.textContent = "";
+            prev_val = "";
+            pv = "";
+            cur_val = "";
+            previous_value.textContent = "Prev: Value";
         } else {
             operate(first_num, last_num, operator);
             pv = +(display.textContent);
@@ -187,5 +206,6 @@ clear.addEventListener("click", () => {
     display.textContent = "";
     prev_val = "";
     pv = "";
+    cur_val = "";
     previous_value.textContent = "Prev: Value";
 });
