@@ -1,13 +1,25 @@
 function add(a, b) {
-    return a+b;
+    x = (a+b);
+    if (x.toString().includes(".")) {
+        x = +x.toFixed(2)
+    }
+    return x;
 }
 
 function subtract(a, b) {
-    return a-b;
+    x = (a-b);
+    if (x.toString().includes(".")) {
+        x = +x.toFixed(2)
+    }
+    return x;
 }
 
 function multiply(a, b) {
-    return a*b;
+    x = (a*b);
+    if (x.toString().includes(".")) {
+        x = +x.toFixed(2)
+    }
+    return x;
 }
 
 function divide(a, b) {
